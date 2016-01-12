@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('angularHero', [
-  'ngRoute',
+  'ui.router',
   'ngAnimate',
   'alAngularHero',
   'angularHero.view1',
@@ -11,6 +11,6 @@ angular.module('angularHero', [
   'angularHero.view4',
   'angularHero.contactsService'
 ]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/view1');
 }]);

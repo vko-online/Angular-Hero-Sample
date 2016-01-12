@@ -1,16 +1,17 @@
 'use strict';
 
-angular.module('angularHero.view4', ['ngRoute'])
+angular.module('angularHero.view4', ['ui.router'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view4/:id', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('view4', {
+    url: '/view4/:id',
     templateUrl: 'view4/view4.html',
     controller: 'View4Ctrl'
   });
 }])
 
-.controller('View4Ctrl', ['$scope', '$routeParams', 'contacts', function ($scope, $routeParams, contacts) {
-        $scope.contact = contacts.getContact(parseInt($routeParams.id));
+.controller('View4Ctrl', ['$scope', '$stateParams', 'contacts', function ($scope, $stateParams, contacts) {
+        $scope.contact = contacts.getContact(parseInt($stateParams.id));
         
         $scope.clickedNext = function () {
             location.hash = '#/view1';

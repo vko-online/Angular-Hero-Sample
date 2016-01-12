@@ -1,18 +1,19 @@
 'use strict';
 
-angular.module('angularHero.view3', ['ngRoute'])
+angular.module('angularHero.view3', ['ui.router'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view3/:id', {
+.config(['$stateProvider', function($stateProvider) {
+  $stateProvider.state('view3', {
+    url: '/view3/:id',
     templateUrl: 'view3/view3.html',
     controller: 'View3Ctrl'
   });
 }])
 
-.controller('View3Ctrl', ['$scope', '$routeParams', 'contacts', function ($scope, $routeParams, contacts) {
-        $scope.contact = contacts.getContact(parseInt($routeParams.id));
+.controller('View3Ctrl', ['$scope', '$stateParams', 'contacts', function ($scope, $stateParams, contacts) {
+        $scope.contact = contacts.getContact(parseInt($stateParams.id));
         
         $scope.clickedNext = function () {
-            location.hash = '#/view4/' + $routeParams.id;
+            location.hash = '#/view4/' + $stateParams.id;
         };
     }]);
